@@ -80,7 +80,7 @@ class Array:
             self.data[j] = self.data[j + 1]
             j += 1
 
-        self.data[self.n - 1] = None
+        self.data.pop()
         self.n -= 1
 
         return result

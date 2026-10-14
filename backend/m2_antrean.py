@@ -240,6 +240,7 @@ def infix_ke_postfix(ekspresi):
 
         elif item == ")":
             ditemukan = False
+            dibuang = []
 
             while not stack_operator.is_empty():
                 operator = stack_operator.pop()
@@ -249,14 +250,20 @@ def infix_ke_postfix(ekspresi):
                     break
 
                 keluaran.append(operator)
+                dibuang.append(operator)
 
             if not ditemukan:
                 raise ValueError("Kurung tidak seimbang.")
 
+            if dibuang:
+                tindakan = "pop sampai (: " + " ".join(dibuang) + ", lalu buang ("
+            else:
+                tindakan = "pop sampai (, lalu buang ("
+
             langkah.append([
                 "1." + str(nomor),
                 item,
-                "pop sampai ( lalu buang (",
+                tindakan,
                 " ".join(stack_operator.data) if not stack_operator.is_empty() else "kosong",
                 " ".join(keluaran)
             ])
@@ -272,7 +279,7 @@ def infix_ke_postfix(ekspresi):
 
                 if prioritas(atas) >= prioritas(item):
                     keluaran.append(stack_operator.pop())
-                    tindakan += "pop " + atas + ", "
+                    tindakan += "pop " + atas + ", lalu"
 
                 else:
                     break
@@ -322,6 +329,7 @@ def hitung_postfix(postfix):
         if item.isdigit():
             stack_angka.push(int(item))
             tindakan = "operand, push " + item
+            nilai_langkah = item
 
         else:
             angka2 = stack_angka.pop()
@@ -352,6 +360,7 @@ def hitung_postfix(postfix):
             )
 
             stack_angka.push(hasil)
+            nilai_langkah = str(hasil)
 
         langkah.append([
             "2." + str(nomor),
@@ -359,7 +368,7 @@ def hitung_postfix(postfix):
             tindakan,
             " ".join(str(x) for x in stack_angka.data)
                 if not stack_angka.is_empty() else "kosong",
-            item
+            nilai_langkah
         ])
 
         nomor += 1

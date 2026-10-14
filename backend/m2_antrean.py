@@ -13,16 +13,8 @@ class Pesanan:
         self.t_selesai_detik = t_selesai_detik
         self.status = status
 
-    def jenis_prioritas(self):
-        if self.prioritas == 1:
-            return "VIP"
-        elif self.prioritas == 2:
-            return "PRIORITAS"
-        else:
-            return "REGULER"
-
     def __str__(self):
-        return (self.oid + '|' + self.pelanggan + '|' + self.resto + '|' + self.menu + '|' + self.jenis_prioritas())
+        return (self.oid + '|' + self.pelanggan + '|' + self.resto + '|' + self.menu + '|' + self.prioritas + '|' + self.status)
 
 
 
@@ -479,7 +471,7 @@ def fitur_enqueue(queue, riwayat):
     print("\n=== QUEUE - ENQUEUE ===")
     print("Masukkan data pesanan baru.")
 
-    oid = input("ID Pesanan       : ").strip()
+    oid = input("ID Pesanan      : ").strip()
 
     # Memeriksa apakah ID sudah digunakan
     i = 0
@@ -512,15 +504,7 @@ def fitur_enqueue(queue, riwayat):
         print("Harga harus berupa angka.")
         return
 
-    # Memastikan prioritas hanya 1, 2, atau 3
-    try:
-        prioritas = int(input("Prioritas (1=VIP, 2=PRIORITAS, 3=REGULER): "))
-        if prioritas < 1 or prioritas > 3:
-            print("Prioritas harus 1, 2, atau 3.")
-            return
-    except ValueError:
-        print("Prioritas harus berupa angka.")
-        return
+    prioritas = input("Prioritas       : ").strip()
 
     try:
         t_masuk_detik = int(input("Waktu Masuk (detik): "))
@@ -530,10 +514,6 @@ def fitur_enqueue(queue, riwayat):
     except ValueError:
         print("Waktu masuk harus berupa angka.")
         return
-
-    # Pesanan baru belum selesai diproses
-    t_selesai_detik = -1
-    status = "ANTRE"
 
     pesanan = Pesanan(oid, pelanggan, resto, menu, harga, prioritas, t_masuk_detik, -1, "ANTRE")
 

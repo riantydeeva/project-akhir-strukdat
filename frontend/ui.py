@@ -381,8 +381,7 @@ class App(tk.Tk):
 
         self.title("2EZ4U Food Delivery")
 
-        self.geometry("1180x740")
-        self.minsize(1000, 620)
+        self.geometry("1100x700")
         self.resizable(True, True)
 
         self.configure(bg=ABU_BG)

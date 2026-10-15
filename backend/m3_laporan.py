@@ -76,13 +76,12 @@ def insertion_sort(larik, kunci="selesai"):
             else:
                 break
         larik[j + 1] = nilai
-        geser += 1
         i += 1
     return larik, perbandingan, geser
 
 
 
-def merge_sort(larik, kunci="selesai"):
+'''def merge_sort(larik, kunci="selesai"):
     n = len(larik)
     if n <= 1:
         return larik[:], 0, 0
@@ -129,6 +128,63 @@ def merge_sort(larik, kunci="selesai"):
                 kanan += 1
                 posisi += 1
                 pemindahan += 1
+            awal += 2 * lebar
+
+        sumber, tujuan = tujuan, sumber
+        lebar *= 2
+
+    return sumber, perbandingan, pemindahan'''
+    
+
+def merge_sort(larik, kunci="selesai"):
+    n = len(larik)
+
+    if n <= 1:
+        return larik[:], 0, 0
+
+    sumber = larik[:]
+    tujuan = [None] * n
+
+    lebar = 1
+    perbandingan = 0
+    pemindahan = 0
+
+    while lebar < n:
+        awal = 0
+
+        while awal < n:
+            tengah = min(awal + lebar, n)
+            akhir = min(awal + 2 * lebar, n)
+
+            kiri = awal
+            kanan = tengah
+            posisi = awal
+
+            while kiri < tengah and kanan < akhir:
+                perbandingan += 1
+
+                if _nilai(sumber[kiri], kunci) <= _nilai(sumber[kanan], kunci):
+                    tujuan[posisi] = sumber[kiri]
+                    kiri += 1
+                else:
+                    tujuan[posisi] = sumber[kanan]
+                    kanan += 1
+
+                posisi += 1
+                pemindahan += 1
+
+            while kiri < tengah:
+                tujuan[posisi] = sumber[kiri]
+                kiri += 1
+                posisi += 1
+                pemindahan += 1
+
+            while kanan < akhir:
+                tujuan[posisi] = sumber[kanan]
+                kanan += 1
+                posisi += 1
+                pemindahan += 1
+
             awal += 2 * lebar
 
         sumber, tujuan = tujuan, sumber

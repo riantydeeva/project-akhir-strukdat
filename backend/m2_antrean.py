@@ -766,49 +766,6 @@ def tampilkan_perubahan(kondisi_sebelum, kondisi_sesudah, jenis):
 
 
 #cek
-'''if __name__ == "__main__":
-    print("=" * 50)
-    print("STACK: HITUNG STRUK LEWAT POSTFIX")
-    print("=" * 50)
-
-    ekspresi = input("Masukkan ekspresi infix: ")
-
-    try:
-        postfix, langkah_konversi = infix_ke_postfix(ekspresi)
-        total, langkah_hitung = hitung_postfix(postfix)
-
-        print("\nStruk  :", ekspresi)
-        print("Postfix:", postfix)
-        print("TOTAL  : Rp {:,.0f}".format(total).replace(",", "."))
-
-        print("\nLANGKAH KONVERSI INFIX KE POSTFIX")
-        print("-" * 90)
-        print("{:<10} {:<10} {:<35} {:<15} {}".format(
-            "Langkah", "Token", "Tindakan", "Stack", "Output"
-        ))
-
-        for baris in langkah_konversi:
-            print("{:<10} {:<10} {:<35} {:<15} {}".format(
-                baris[0], baris[1], baris[2],
-                baris[3], baris[4]
-            ))
-
-        print("\nLANGKAH EVALUASI POSTFIX")
-        print("-" * 90)
-        print("{:<10} {:<10} {:<45} {}".format(
-            "Langkah", "Token", "Tindakan", "Stack"
-        ))
-
-        for baris in langkah_hitung:
-            print("{:<10} {:<10} {:<45} {}".format(
-                baris[0], baris[1], baris[2], baris[3]
-            ))
-
-    except ValueError as error:
-        print("Error:", error)'''
-
-
-
 def main():
     data_awal = muat_pesanan_antre()
 
